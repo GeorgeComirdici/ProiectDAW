@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 namespace ProiectDAW.data
 {
-    public class context : DbContext
+    public class ProiectDAWcontext : DbContext
     {
-        public context (DbContextOptions options) : base(options)
+        public ProiectDAWcontext(DbContextOptions options) : base(options)
         {
         }
         public DbSet<detaliiAngajati> detaliiAngajatis { get; set; }
