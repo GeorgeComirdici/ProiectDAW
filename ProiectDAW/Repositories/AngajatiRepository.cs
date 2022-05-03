@@ -6,49 +6,49 @@ namespace ProiectDAW.Repositories
 {
     public class AngajatiRepository : IAngajatiRepository
     {
-        private ProiectDAWcontext context;
+        private readonly ProiectDAWcontext _context;
         public AngajatiRepository(ProiectDAWcontext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public ICollection<detaliiAngajati>GetAngajati()
         {
-            return context.detaliiAngajatis.OrderBy(p => p.IdAngajat).ToList();
+            return _context.detaliiAngajatis.OrderBy(p => p.IdAngajat).ToList();
         }
 
         public detaliiAngajati GetAngajatiById(int IdAngajat)
         {
-            return context.detaliiAngajatis.Find(IdAngajat);
+            return _context.detaliiAngajatis.Where(p => p.IdAngajat == IdAngajat).FirstOrDefault();
         }
 
-        public detaliiAngajati GetAngajatiByNume(string nume)
-        {
-            return context.detaliiAngajatis.Find(nume);
-        }
+        //public detaliiAngajati GetAngajatiByNume(string nume)
+        //{
+            //return context.detaliiAngajatis.Find(nume);
+        //}
 
         public void InsertAngajati(detaliiAngajati detaliiAngajati)
         {
-            context.detaliiAngajatis.Add(detaliiAngajati);
+            _context.detaliiAngajatis.Add(detaliiAngajati);
             Save();
         }
 
         public void DeleteAngajati(int IdAngajat)
         {
-            detaliiAngajati detaliiAngajati = context.detaliiAngajatis.Find(IdAngajat);
-            context.detaliiAngajatis.Remove(detaliiAngajati);
+            detaliiAngajati detaliiAngajati = _context.detaliiAngajatis.Find(IdAngajat);
+            _context.detaliiAngajatis.Remove(detaliiAngajati);
             Save();
         }
 
         public void UpdateAngajati(detaliiAngajati detaliiAngajati)
         {
-            context.detaliiAngajatis.Update(detaliiAngajati);
+            _context.detaliiAngajatis.Update(detaliiAngajati);
             Save();
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }
