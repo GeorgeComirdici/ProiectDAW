@@ -61,5 +61,14 @@ namespace ProiectDAW.Controllers
             _departamenteRepository.DeleteDepartament(departamentSters);
             return Ok("Departament sters");
         }
+        [HttpPut("{IdDepartament}")]
+        public IActionResult UpdateDepartament(int IdDepartament, departamenteDTO departamentUpdadat)
+        {
+            if(departamentUpdadat == null)
+                return BadRequest(ModelState);
+            var updatedepartament = _mapper.Map<departamente>(departamentUpdadat);
+            _departamenteRepository.UpdateDepartament(updatedepartament);
+            return Ok("Departament modificat");
+        }
     }
 }

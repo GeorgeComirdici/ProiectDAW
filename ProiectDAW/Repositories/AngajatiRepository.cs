@@ -39,10 +39,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
-        public void UpdateAngajati(detaliiAngajati detaliiAngajati)
+        public bool UpdateAngajati(detaliiAngajati detaliiAngajati)
         {
-            _context.detaliiAngajatis.Update(detaliiAngajati);
-            Save();
+            _context.Update(detaliiAngajati);
+            return Save();
         }
 
         public bool Save()

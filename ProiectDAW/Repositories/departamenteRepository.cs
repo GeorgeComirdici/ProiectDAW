@@ -32,10 +32,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
-        public void UpdateDepartament(departamente departamente)
+        public bool UpdateDepartament(departamente departamente)
         {
-            _context.departamentes.Update(departamente);
-            Save();
+            _context.Update(departamente);
+            return Save();
         }
 
         public departamente GetDepartamentById(int IdDepartament)

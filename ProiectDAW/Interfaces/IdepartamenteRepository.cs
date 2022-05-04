@@ -7,8 +7,8 @@ namespace ProiectDAW.Interfaces
         departamente GetDepartamentById(int IdDepartament);
         //departamente GetDepartamentByNume(string NumeDepartament);
         bool InsertDepartament(departamente departamente);
-        bool DeleteDepartament (departamente departamente);
-        void UpdateDepartament(departamente departamente);
+        bool DeleteDepartament(departamente departamente);
+        bool UpdateDepartament(departamente departamente);
         bool Save(); 
 
     }

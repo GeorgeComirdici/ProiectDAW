@@ -8,7 +8,7 @@ namespace ProiectDAW.Interfaces
         proiecte GetProiectById(int IdProiect);
         bool InsertProiect(proiecte proiecte);
         bool DeleteProiect(proiecte proiecte);
-        void UpdateProiect(proiecte proiecte);
+        bool UpdateProiect(proiecte proiecte);
         bool Save();
     }
 }

@@ -62,5 +62,15 @@ namespace ProiectDAW.Controllers
             _angajatiRepository.DeleteAngajati(angajatSters);
             return Ok("Angajat sters");
         }
+
+        [HttpPut("{IdAngajat}")]
+        public IActionResult UpdateAngajati(int IdAngajat, detaliiAngajatiDTO angajatUpdadat)
+        {
+            if (angajatUpdadat == null)
+                return BadRequest(ModelState);
+            var updateangajat = _mapper.Map<detaliiAngajati>(angajatUpdadat);
+            _angajatiRepository.UpdateAngajati(updateangajat);
+            return Ok("Angajat modificat");
+        }
     }
 }

@@ -26,10 +26,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
-        public void UpdateProiect(proiecte proiecte)
+        public bool UpdateProiect(proiecte proiecte)
         {
-            _context.proiectes.Update(proiecte);
-            Save();
+            _context.Update(proiecte);
+            return Save();
         }
 
         public proiecte GetProiectById(int IdProiect)

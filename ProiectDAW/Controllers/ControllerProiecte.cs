@@ -58,5 +58,15 @@ namespace ProiectDAW.Controllers
             _proiecteRepository.DeleteProiect(proiectSters);
             return Ok("Proiect sters");
         }
+
+        [HttpPut("{IdProiect}")]
+        public IActionResult UpdateProiect(int IdProiect, proiecteDTO proiectUpdadat)
+        {
+            if (proiectUpdadat == null)
+                return BadRequest(ModelState);
+            var updateproiect = _mapper.Map<proiecte>(proiectUpdadat);
+            _proiecteRepository.UpdateProiect(updateproiect);
+            return Ok("Proiect modificat");
+        }
     }
 }

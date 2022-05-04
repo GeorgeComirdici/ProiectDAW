@@ -7,7 +7,7 @@ namespace ProiectDAW.Interfaces
         detaliiAngajati GetAngajatiById(int IdAngajat);
         //detaliiAngajati GetAngajatiByNume(string nume);
         bool InsertAngajati(detaliiAngajati detaliiAngajati);
-        void UpdateAngajati(detaliiAngajati detaliiAngajati);
+        bool UpdateAngajati(detaliiAngajati detaliiAngajati);
         bool DeleteAngajati(detaliiAngajati detaliiAngajati);
         bool Save();
     }
