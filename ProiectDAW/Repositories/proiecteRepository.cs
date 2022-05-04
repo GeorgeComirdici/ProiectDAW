@@ -14,10 +14,10 @@ namespace ProiectDAW.Repositories
         {
             return _context.proiectes.OrderBy(p => p.IdProiect).ToList();
         }
-        public void InsertProiect(proiecte proiecte)
+        public bool InsertProiect(proiecte proiecte)
         {
-            _context.proiectes.Add(proiecte);
-            Save();
+            _context.Add(proiecte);
+            return Save();
         }
 
         public void DeleteProiect(int IdProiect)
@@ -35,12 +35,13 @@ namespace ProiectDAW.Repositories
 
         public proiecte GetProiectById(int IdProiect)
         {
-            return _context.proiectes.Find(IdProiect);
+            return _context.proiectes.Where(p => p.IdProiect == IdProiect).FirstOrDefault();
         }
 
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            var salvat = _context.SaveChanges();
+            return salvat > 0 ? true : false;
         }
     }
 }

@@ -34,6 +34,18 @@ namespace ProiectDAW.Controllers
                 return BadRequest(ModelState);
             return Ok(departamente1);
         }
-
+        [HttpPost]
+        public IActionResult InsertDepartament(departamenteDTO inserareDepartament)
+        {
+            if (inserareDepartament == null)
+                return BadRequest(ModelState);
+            var departament = _mapper.Map<departamente>(inserareDepartament);
+            if(!_departamenteRepository.InsertDepartament(departament))
+            {
+                ModelState.AddModelError("", "Eroare");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Departament adaugat cu succes");
+        }
     }
 }

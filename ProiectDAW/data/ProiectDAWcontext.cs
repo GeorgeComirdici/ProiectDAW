@@ -29,7 +29,7 @@ namespace ProiectDAW.data
             {
                 entity.HasOne(x => x.Departamente)
                       .WithMany(x => x.Angajati)
-                      .HasForeignKey(x => x.foreignKeyDepartament);
+                      .HasForeignKey(x => x.IdDepartament);
             });
             
             modelBuilder.Entity<proiecteAngajati>(entity =>

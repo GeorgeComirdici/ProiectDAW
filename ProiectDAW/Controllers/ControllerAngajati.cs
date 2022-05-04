@@ -37,16 +37,18 @@ namespace ProiectDAW.Controllers
             return Ok(angajati1);
         }
 
-        [HttpPost("create")]
-        public IActionResult InsertAngajat(detaliiAngajati detaliiAngajati)
+        [HttpPost]
+        public IActionResult InsertAngajati(detaliiAngajatiDTO inserareAngajat)
         {
-            var AngajatCreat = new detaliiAngajati
+            if (inserareAngajat == null)
+                return BadRequest(ModelState);
+            var angajat = _mapper.Map<detaliiAngajati>(inserareAngajat);
+            if (!_angajatiRepository.InsertAngajati(angajat))
             {
-                Nume = detaliiAngajati.Nume,
-                Salariu = detaliiAngajati.Salariu
-            };
-            _angajatiRepository.InsertAngajati(AngajatCreat);
-            return Ok("succes - angajat adaugat");
+                ModelState.AddModelError("", "Eroare");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Angajat adaugat cu succes");
         }
     }
 }

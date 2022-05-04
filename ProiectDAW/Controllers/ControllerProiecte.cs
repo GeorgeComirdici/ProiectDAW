@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProiectDAW.Interfaces;
 using ProiectDAW.DTO;
+using ProiectDAW.Models;
 
 namespace ProiectDAW.Controllers
 {
@@ -32,6 +33,19 @@ namespace ProiectDAW.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(proiecte1);
+        }
+        [HttpPost]
+        public IActionResult InsertProiect(proiecteDTO inserareProiect)
+        {
+            if (inserareProiect == null)
+                return BadRequest(ModelState);
+            var proiect = _mapper.Map<proiecte>(inserareProiect);
+            if (!_proiecteRepository.InsertProiect(proiect))
+            {
+                ModelState.AddModelError("", "Eroare");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Proiect adaugat cu succes");
         }
     }
 }

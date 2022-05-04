@@ -6,10 +6,10 @@ namespace ProiectDAW.Interfaces
         ICollection<departamente> GetDepartament();
         departamente GetDepartamentById(int IdDepartament);
         //departamente GetDepartamentByNume(string NumeDepartament);
-        void InsertDepartament(departamente departamente);
+        bool InsertDepartament(departamente departamente);
         void DeleteDepartament (int IdDepartament);
         void UpdateDepartament(departamente departamente);
-        void Save(); 
+        bool Save(); 
 
     }
 }

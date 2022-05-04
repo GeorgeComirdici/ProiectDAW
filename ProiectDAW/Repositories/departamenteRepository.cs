@@ -20,10 +20,10 @@ namespace ProiectDAW.Repositories
             return _context.departamentes.OrderBy(p => p.IdDepartament).ToList();
         }
 
-        public void InsertDepartament(departamente departamente)
+        public bool InsertDepartament(departamente departamente)
         {
-            _context.departamentes.Add(departamente);
-            Save();
+            _context.Add(departamente);
+            return Save();
         }
 
         public void DeleteDepartament(int IdDepartament)
@@ -50,9 +50,10 @@ namespace ProiectDAW.Repositories
         //}
 
 
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            var salvat = _context.SaveChanges();
+            return salvat >0 ? true : false;
         }
     }
 }

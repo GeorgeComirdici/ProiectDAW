@@ -27,10 +27,10 @@ namespace ProiectDAW.Repositories
             //return context.detaliiAngajatis.Find(nume);
         //}
 
-        public void InsertAngajati(detaliiAngajati detaliiAngajati)
+        public bool InsertAngajati(detaliiAngajati detaliiAngajati)
         {
-            _context.detaliiAngajatis.Add(detaliiAngajati);
-            Save();
+            _context.Add(detaliiAngajati);
+            return Save();
         }
 
         public void DeleteAngajati(int IdAngajat)
@@ -46,9 +46,10 @@ namespace ProiectDAW.Repositories
             Save();
         }
 
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            var salvat = _context.SaveChanges();
+            return salvat > 0 ? true : false;
         }
     }
 }
