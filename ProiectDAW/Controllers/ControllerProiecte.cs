@@ -18,7 +18,7 @@ namespace ProiectDAW.Controllers
             _proiecteRepository = proiecteRepository;
             _mapper = mapper;
         }
-        [HttpGet]
+        [HttpGet("getProiecte")]
         public IActionResult GetProiect()
         {
             var proiecte = _mapper.Map<List<proiecteDTO>>(_proiecteRepository.GetProiect());
@@ -26,7 +26,7 @@ namespace ProiectDAW.Controllers
                 return BadRequest(ModelState);
             return Ok(proiecte);
         }
-        [HttpGet("{IdProiect}")]
+        [HttpGet("getProiectById/{IdProiect}")]
         public IActionResult GetProiectById(int IdProiect)
         {
             var proiecte1 = _mapper.Map<proiecteDTO>(_proiecteRepository.GetProiectById(IdProiect));
@@ -34,7 +34,7 @@ namespace ProiectDAW.Controllers
                 return BadRequest(ModelState);
             return Ok(proiecte1);
         }
-        [HttpPost]
+        [HttpPost("inserareProiect")]
         public IActionResult InsertProiect(proiecteDTO inserareProiect)
         {
             if (inserareProiect == null)
@@ -47,7 +47,7 @@ namespace ProiectDAW.Controllers
             }
             return Ok("Proiect adaugat cu succes");
         }
-        [HttpDelete("{IdProiect}")]
+        [HttpDelete("stergereProiect/{IdProiect}")]
         public IActionResult DeleteProiect(int IdProiect)
         {
             if (_proiecteRepository.GetProiectById(IdProiect) == null)
@@ -59,7 +59,7 @@ namespace ProiectDAW.Controllers
             return Ok("Proiect sters");
         }
 
-        [HttpPut("{IdProiect}")]
+        [HttpPut("modificareProiect/{IdProiect}")]
         public IActionResult UpdateProiect(int IdProiect, proiecteDTO proiectUpdadat)
         {
             if (proiectUpdadat == null)

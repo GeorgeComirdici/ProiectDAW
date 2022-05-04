@@ -19,7 +19,7 @@ namespace ProiectDAW.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("getDepartamente")]
         public IActionResult GetDepartament()
         {
             var departamentee = _mapper.Map<List<departamenteDTO>>(_departamenteRepository.GetDepartament());
@@ -28,7 +28,7 @@ namespace ProiectDAW.Controllers
             return Ok(departamentee);
         }
 
-        [HttpGet("{IdDepartament}")]
+        [HttpGet("getDepartamentById/{IdDepartament}")]
         public IActionResult GetDepartamentById(int IdDepartament)
         {
             var departamente1 = _mapper.Map<departamenteDTO>(_departamenteRepository.GetDepartamentById(IdDepartament));
@@ -37,7 +37,7 @@ namespace ProiectDAW.Controllers
             return Ok(departamente1);
         }
 
-        [HttpPost]
+        [HttpPost("adaugareDepartament")]
         public IActionResult InsertDepartament(departamenteDTO inserareDepartament)
         {
             if (inserareDepartament == null)
@@ -50,7 +50,7 @@ namespace ProiectDAW.Controllers
             return Ok("Departament adaugat cu succes");
         }
 
-        [HttpDelete("{IdDepartament}")]
+        [HttpDelete("stergereDepartament/{IdDepartament}")]
         public IActionResult DeleteDepartament(int IdDepartament)
         {
             if(_departamenteRepository.GetDepartamentById(IdDepartament) == null)
@@ -61,7 +61,7 @@ namespace ProiectDAW.Controllers
             _departamenteRepository.DeleteDepartament(departamentSters);
             return Ok("Departament sters");
         }
-        [HttpPut("{IdDepartament}")]
+        [HttpPut("modificareDepartament/{IdDepartament}")]
         public IActionResult UpdateDepartament(int IdDepartament, departamenteDTO departamentUpdadat)
         {
             if(departamentUpdadat == null)

@@ -19,7 +19,7 @@ namespace ProiectDAW.Controllers
             _angajatiRepository = angajatiRepository;
             _mapper = mapper;
         }
-        [HttpGet]
+        [HttpGet("getAngajati")]
         public IActionResult GetAngajati()
         {
             var angajatii = _mapper.Map<List<detaliiAngajatiDTO>>(_angajatiRepository.GetAngajati());
@@ -28,7 +28,7 @@ namespace ProiectDAW.Controllers
             return Ok(angajatii);
         }
 
-        [HttpGet("{IdAngajat}")]
+        [HttpGet("getAngajatiById/{IdAngajat}")]
         public IActionResult GetAngajatiById(int IdAngajat)
         {
             var angajati1 = _mapper.Map<detaliiAngajatiDTO>(_angajatiRepository.GetAngajatiById(IdAngajat));
@@ -37,7 +37,7 @@ namespace ProiectDAW.Controllers
             return Ok(angajati1);
         }
 
-        [HttpPost]
+        [HttpPost("inserareAngajat")]
         public IActionResult InsertAngajati(detaliiAngajatiDTO inserareAngajat)
         {
             if (inserareAngajat == null)
@@ -51,7 +51,7 @@ namespace ProiectDAW.Controllers
             return Ok("Angajat adaugat cu succes");
         }
 
-        [HttpDelete("{IdAngajat}")]
+        [HttpDelete("stergereAngajat/{IdAngajat}")]
         public IActionResult DeleteAngajati(int IdAngajat)
         {
             if (_angajatiRepository.GetAngajatiById(IdAngajat) == null)
@@ -63,7 +63,7 @@ namespace ProiectDAW.Controllers
             return Ok("Angajat sters");
         }
 
-        [HttpPut("{IdAngajat}")]
+        [HttpPut("modificareAngajat/{IdAngajat}")]
         public IActionResult UpdateAngajati(int IdAngajat, detaliiAngajatiDTO angajatUpdadat)
         {
             if (angajatUpdadat == null)
