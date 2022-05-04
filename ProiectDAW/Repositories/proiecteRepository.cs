@@ -20,11 +20,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
-        public void DeleteProiect(int IdProiect)
+        public bool DeleteProiect(proiecte proiecte)
         {
-            proiecte proiecte = _context.proiectes.Find(IdProiect);
-            _context.proiectes.Remove(proiecte);
-            Save();
+            _context.Remove(proiecte);
+            return Save();
         }
 
         public void UpdateProiect(proiecte proiecte)

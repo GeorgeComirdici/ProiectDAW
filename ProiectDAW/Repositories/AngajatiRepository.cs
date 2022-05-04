@@ -33,11 +33,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
-        public void DeleteAngajati(int IdAngajat)
+        public bool DeleteAngajati(detaliiAngajati detaliiAngajati)
         {
-            detaliiAngajati detaliiAngajati = _context.detaliiAngajatis.Find(IdAngajat);
-            _context.detaliiAngajatis.Remove(detaliiAngajati);
-            Save();
+            _context.Remove(detaliiAngajati);
+            return Save();
         }
 
         public void UpdateAngajati(detaliiAngajati detaliiAngajati)

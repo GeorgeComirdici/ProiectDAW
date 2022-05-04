@@ -18,6 +18,7 @@ namespace ProiectDAW.Controllers
             _departamenteRepository = departamenteRepository;
             _mapper = mapper;
         }
+
         [HttpGet]
         public IActionResult GetDepartament()
         {
@@ -26,6 +27,7 @@ namespace ProiectDAW.Controllers
                 return BadRequest(ModelState);
             return Ok(departamentee);
         }
+
         [HttpGet("{IdDepartament}")]
         public IActionResult GetDepartamentById(int IdDepartament)
         {
@@ -34,6 +36,7 @@ namespace ProiectDAW.Controllers
                 return BadRequest(ModelState);
             return Ok(departamente1);
         }
+
         [HttpPost]
         public IActionResult InsertDepartament(departamenteDTO inserareDepartament)
         {
@@ -43,9 +46,20 @@ namespace ProiectDAW.Controllers
             if(!_departamenteRepository.InsertDepartament(departament))
             {
                 ModelState.AddModelError("", "Eroare");
-                return StatusCode(500, ModelState);
             }
             return Ok("Departament adaugat cu succes");
+        }
+
+        [HttpDelete("{IdDepartament}")]
+        public IActionResult DeleteDepartament(int IdDepartament)
+        {
+            if(_departamenteRepository.GetDepartamentById(IdDepartament) == null)
+            {
+                return NotFound();
+            }
+            var departamentSters = _departamenteRepository.GetDepartamentById(IdDepartament);
+            _departamenteRepository.DeleteDepartament(departamentSters);
+            return Ok("Departament sters");
         }
     }
 }

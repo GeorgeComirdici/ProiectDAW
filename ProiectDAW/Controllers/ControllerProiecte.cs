@@ -47,5 +47,16 @@ namespace ProiectDAW.Controllers
             }
             return Ok("Proiect adaugat cu succes");
         }
+        [HttpDelete("{IdProiect}")]
+        public IActionResult DeleteProiect(int IdProiect)
+        {
+            if (_proiecteRepository.GetProiectById(IdProiect) == null)
+            {
+                return NotFound();
+            }
+            var proiectSters = _proiecteRepository.GetProiectById(IdProiect);
+            _proiecteRepository.DeleteProiect(proiectSters);
+            return Ok("Proiect sters");
+        }
     }
 }

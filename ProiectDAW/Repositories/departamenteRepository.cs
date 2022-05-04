@@ -26,11 +26,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
-        public void DeleteDepartament(int IdDepartament)
+        public bool DeleteDepartament(departamente departamente)
         {
-            departamente departamente = _context.departamentes.Find(IdDepartament);
-            _context.departamentes.Remove(departamente);
-            Save();
+            _context.Remove(departamente);
+            return Save();
         }
 
         public void UpdateDepartament(departamente departamente)
@@ -48,7 +47,6 @@ namespace ProiectDAW.Repositories
         //{
           //  return _context.departamentes.Where(p => p.NumeDepartament == NumeDepartament).FirstOrDefault();
         //}
-
 
         public bool Save()
         {

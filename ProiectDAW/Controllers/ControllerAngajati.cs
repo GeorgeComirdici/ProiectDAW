@@ -50,5 +50,17 @@ namespace ProiectDAW.Controllers
             }
             return Ok("Angajat adaugat cu succes");
         }
+
+        [HttpDelete("{IdAngajat}")]
+        public IActionResult DeleteAngajati(int IdAngajat)
+        {
+            if (_angajatiRepository.GetAngajatiById(IdAngajat) == null)
+            {
+                return NotFound();
+            }
+            var angajatSters = _angajatiRepository.GetAngajatiById(IdAngajat);
+            _angajatiRepository.DeleteAngajati(angajatSters);
+            return Ok("Angajat sters");
+        }
     }
 }
