@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using ProiectDAW.DTO;
+using BCrypt.Net;
+using ProiectDAW.Helpers;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography;
 
 namespace ProiectDAW.Controllers
 {
@@ -14,10 +18,12 @@ namespace ProiectDAW.Controllers
     {
         private readonly IAngajatiRepository _angajatiRepository;
         private readonly IMapper _mapper;
-        public ControllerAngajati(IAngajatiRepository angajatiRepository, IMapper mapper)
+        private readonly Jwt _jwt;
+        public ControllerAngajati(IAngajatiRepository angajatiRepository, IMapper mapper, Jwt jwt)
         {
             _angajatiRepository = angajatiRepository;
             _mapper = mapper;
+            _jwt = jwt;
         }
         [HttpGet("getAngajati")]
         public IActionResult GetAngajati()
@@ -40,15 +46,33 @@ namespace ProiectDAW.Controllers
         [HttpPost("inserareAngajat")]
         public IActionResult InsertAngajati(detaliiAngajatiDTO inserareAngajat)
         {
-            if (inserareAngajat == null)
-                return BadRequest(ModelState);
-            var angajat = _mapper.Map<detaliiAngajati>(inserareAngajat);
-            if (!_angajatiRepository.InsertAngajati(angajat))
+            var angajat = new detaliiAngajati
             {
-                ModelState.AddModelError("", "Eroare");
-                return StatusCode(500, ModelState);
-            }
+                IdAngajat = inserareAngajat.IdAngajat,
+                Nume = inserareAngajat.Nume,
+                Email = inserareAngajat.Email,
+                Salariu = inserareAngajat.Salariu,
+                ParolaHash = BCrypt.Net.BCrypt.HashPassword(inserareAngajat.Parola),
+                IdDepartament = inserareAngajat.IdDepartament
+            };
+            _angajatiRepository.InsertAngajati(angajat);
             return Ok("Angajat adaugat cu succes");
+        }
+
+        [HttpPost("login")]
+        public IActionResult LoginAngajat(detaliiAngajatLoginDTO detaliiAngajatLoginDTO)
+        {
+            var angajatLogin = _angajatiRepository.GetAngajatByEmail(detaliiAngajatLoginDTO.Email);
+            if(!BCrypt.Net.BCrypt.Verify(detaliiAngajatLoginDTO.Parola, angajatLogin.ParolaHash))
+            {
+                return BadRequest(new { message = "Parola gresita" });
+            }
+            var jwt1 = _jwt.CreateToken(angajatLogin.IdAngajat);
+            //return Ok("Ok a mers logarea");
+            return Ok(new
+            {
+                jwt = jwt1
+            });
         }
 
         [HttpDelete("stergereAngajat/{IdAngajat}")]

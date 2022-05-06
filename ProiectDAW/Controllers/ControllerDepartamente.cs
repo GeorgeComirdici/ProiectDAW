@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProiectDAW.Interfaces;
 using ProiectDAW.Models;
 using ProiectDAW.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProiectDAW.Controllers
 {

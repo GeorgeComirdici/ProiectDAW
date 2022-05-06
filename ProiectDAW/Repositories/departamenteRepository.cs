@@ -4,6 +4,7 @@ using ProiectDAW.data;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProiectDAW.Repositories
 {
@@ -17,7 +18,7 @@ namespace ProiectDAW.Repositories
 
         public ICollection<departamente> GetDepartament()
         {
-            return _context.departamentes.OrderBy(p => p.IdDepartament).ToList();
+            return _context.departamentes.OrderBy(p => p.IdDepartament).Include(p => p.Angajati).ToList();
         }
 
         public bool InsertDepartament(departamente departamente)

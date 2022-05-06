@@ -15,6 +15,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProiectDAW.Interfaces;
 using ProiectDAW.Repositories;
+using ProiectDAW.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace ProiectDAW
 {
@@ -34,11 +39,31 @@ namespace ProiectDAW
             services.AddScoped<IdepartamenteRepository, departamenteRepository>();
             services.AddScoped<IAngajatiRepository, AngajatiRepository>();
             services.AddScoped<IproiecteRepository, proiecteRepository>();
+            services.AddScoped<Jwt>(); 
             services.AddControllers().AddNewtonsoftJson();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProiectDAW", Version = "v1" });
+            services.AddSwaggerGen(options => {
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "Standard Authorization header using the Bearer scheme (\"{token}\")",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                            .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+            
 
             services.AddDbContext<ProiectDAWcontext>(options => options.UseSqlServer("Data Source=DESKTOP-SMUEMVG;Initial Catalog=ProiectDAW2;Integrated Security=True"));
         }
@@ -56,7 +81,7 @@ namespace ProiectDAW
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

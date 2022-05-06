@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectDAW.data;
 
@@ -10,9 +11,10 @@ using ProiectDAW.data;
 namespace ProiectDAW.Migrations
 {
     [DbContext(typeof(ProiectDAWcontext))]
-    partial class ProiectDAWcontextModelSnapshot : ModelSnapshot
+    [Migration("20220505093036_Update2")]
+    partial class Update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace ProiectDAW.Migrations
 
                     b.HasKey("IdAdresa");
 
-                    b.ToTable("adreseAngajatis", (string)null);
+                    b.ToTable("adreseAngajatis");
                 });
 
             modelBuilder.Entity("ProiectDAW.Models.departamente", b =>
@@ -63,7 +65,7 @@ namespace ProiectDAW.Migrations
 
                     b.HasKey("IdDepartament");
 
-                    b.ToTable("departamentes", (string)null);
+                    b.ToTable("departamentes");
                 });
 
             modelBuilder.Entity("ProiectDAW.Models.detaliiAngajati", b =>
@@ -82,7 +84,7 @@ namespace ProiectDAW.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ParolaHash")
+                    b.Property<string>("Parola")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -93,7 +95,7 @@ namespace ProiectDAW.Migrations
 
                     b.HasIndex("IdDepartament");
 
-                    b.ToTable("detaliiAngajatis", (string)null);
+                    b.ToTable("detaliiAngajatis");
                 });
 
             modelBuilder.Entity("ProiectDAW.Models.proiecte", b =>
@@ -110,7 +112,7 @@ namespace ProiectDAW.Migrations
 
                     b.HasKey("IdProiect");
 
-                    b.ToTable("proiectes", (string)null);
+                    b.ToTable("proiectes");
                 });
 
             modelBuilder.Entity("ProiectDAW.Models.proiecteAngajati", b =>
@@ -133,7 +135,7 @@ namespace ProiectDAW.Migrations
 
                     b.HasIndex("IdProiect");
 
-                    b.ToTable("proiecteAngajatis", (string)null);
+                    b.ToTable("proiecteAngajatis");
                 });
 
             modelBuilder.Entity("ProiectDAW.Models.detaliiAngajati", b =>

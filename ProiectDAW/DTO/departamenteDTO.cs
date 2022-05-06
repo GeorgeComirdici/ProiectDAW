@@ -1,4 +1,5 @@
-﻿namespace ProiectDAW.DTO
+﻿
+namespace ProiectDAW.DTO
 {
     public class departamenteDTO
     {

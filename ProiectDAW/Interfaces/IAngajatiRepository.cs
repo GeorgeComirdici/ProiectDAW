@@ -9,6 +9,7 @@ namespace ProiectDAW.Interfaces
         bool InsertAngajati(detaliiAngajati detaliiAngajati);
         bool UpdateAngajati(detaliiAngajati detaliiAngajati);
         bool DeleteAngajati(detaliiAngajati detaliiAngajati);
+        detaliiAngajati GetAngajatByEmail(string Email);
         bool Save();
     }
 }

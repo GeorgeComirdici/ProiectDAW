@@ -1,6 +1,7 @@
 ﻿using ProiectDAW.Models;
 using ProiectDAW.Interfaces;
 using ProiectDAW.data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProiectDAW.Repositories
 {
@@ -14,7 +15,7 @@ namespace ProiectDAW.Repositories
 
         public ICollection<detaliiAngajati>GetAngajati()
         {
-            return _context.detaliiAngajatis.OrderBy(p => p.IdAngajat).ToList();
+            return _context.detaliiAngajatis.OrderBy(p => p.IdAngajat).Include(u => u.Adresa).ToList();
         }
 
         public detaliiAngajati GetAngajatiById(int IdAngajat)
@@ -45,6 +46,10 @@ namespace ProiectDAW.Repositories
             return Save();
         }
 
+        public detaliiAngajati GetAngajatByEmail(string Email)
+        {
+            return _context.detaliiAngajatis.Where(u => u.Email == Email).FirstOrDefault();
+        }
         public bool Save()
         {
             var salvat = _context.SaveChanges();

@@ -65,3 +65,9 @@ C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\New
 C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\Scrutor.dll
+C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\GEORGEADRIANCOMIRDIC\Desktop\ProiectDAW\ProiectDAW\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
