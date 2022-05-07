@@ -15,7 +15,7 @@ namespace ProiectDAW.Repositories
 
         public ICollection<detaliiAngajati>GetAngajati()
         {
-            return _context.detaliiAngajatis.OrderBy(p => p.IdAngajat).Include(u => u.Adresa).ToList();
+            return _context.detaliiAngajatis.OrderBy(p => p.IdAngajat).ToList();
         }
 
         public detaliiAngajati GetAngajatiById(int IdAngajat)

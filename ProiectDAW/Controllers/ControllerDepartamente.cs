@@ -23,7 +23,7 @@ namespace ProiectDAW.Controllers
         [HttpGet("getDepartamente")]
         public IActionResult GetDepartament()
         {
-            var departamentee = _mapper.Map<List<departamenteDTO>>(_departamenteRepository.GetDepartament());
+            var departamentee = _mapper.Map<List<departamenteDTO2>>(_departamenteRepository.GetDepartament());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(departamentee);

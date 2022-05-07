@@ -14,6 +14,8 @@ namespace ProiectDAW.Helpers
             CreateMap<detaliiAngajatiDTO, detaliiAngajati>();
             CreateMap<proiecte, proiecteDTO>();
             CreateMap<proiecteDTO, proiecte>();
+            CreateMap<departamente, departamenteDTO2>();
+            CreateMap<departamenteDTO2, departamente>();
         }
     }
 }
